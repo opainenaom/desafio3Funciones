@@ -1,0 +1,37 @@
+// Obtén los elementos necesarios del DOM
+const cantidadElem = document.querySelector('#cantidad');
+const totalElem = document.querySelector('#total');
+const precioBaseElem = document.querySelector('#precio-base');
+
+// Obtén los botones de incrementar y decrementar
+const botonIncrementar = document.querySelector('#incrementar');
+const botonDecrementar = document.querySelector('#decrementar');
+
+// Valor inicial de la cantidad
+let cantidad = parseInt(cantidadElem.textContent);
+
+// Actualiza el total en el DOM
+function actualizarTotal() {
+  const precioBase = parseInt(precioBaseElem.textContent);
+  const total = precioBase * cantidad;
+  totalElem.textContent = total;
+}
+
+// Incrementa la cantidad
+botonIncrementar.addEventListener('click', () => {
+  cantidad += 1;
+  cantidadElem.textContent = cantidad;
+  actualizarTotal();
+});
+
+// Decrementa la cantidad
+botonDecrementar.addEventListener('click', () => {
+  if (cantidad > 1) {
+    cantidad -= 1;
+    cantidadElem.textContent = cantidad;
+    actualizarTotal();
+  }
+});
+
+// Inicializa el total cuando la página carga
+actualizarTotal();
